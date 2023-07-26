@@ -76,11 +76,14 @@ module sap_bus(
     wire[7:0] ram_read;
     random_access_memory RAM(
       .addr(SW[3:0]), // 4-bit address input
-      .data(SW[11:8]), // 8-bit data input
+      .data(SW[11:4]), // 8-bit data input
       .clk(slow_clk),
       .we(en), // write enable input
       .q(ram_read) // 8-bit data output
     );
+
+
+
 
     wire[7:0] AN;
     // AN[7:4] are unused, hard code to '1'
