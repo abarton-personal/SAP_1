@@ -90,9 +90,7 @@ OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 read_verilog -library xil_defaultlib {
   C:/Users/abarton/Documents/Vivado/SAP-1/SAP-1.srcs/sources_1/new/display_multiplexer.v
-  C:/Users/abarton/Documents/Vivado/SAP-1/SAP-1.srcs/sources_1/new/memory_address_register.v
-  C:/Users/abarton/Documents/Vivado/SAP-1/SAP-1.srcs/sources_1/new/program_counter.v
-  C:/Users/abarton/Documents/Vivado/SAP-1/SAP-1.srcs/sources_1/new/random_access_memory.v
+  C:/Users/abarton/Documents/Vivado/SAP-1/SAP-1.srcs/sources_1/new/register.v
   C:/Users/abarton/Documents/Vivado/SAP-1/SAP-1.srcs/sources_1/new/seven_segment.v
   C:/Users/abarton/Documents/Vivado/SAP-1/SAP-1.srcs/sources_1/new/sap_bus.v
 }

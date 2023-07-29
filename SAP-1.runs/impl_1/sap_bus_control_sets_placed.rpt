@@ -1,7 +1,7 @@
 Copyright 1986-2023 Xilinx, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2022.2.2 (win64) Build 3788238 Tue Feb 21 20:00:34 MST 2023
-| Date         : Mon Jul 17 18:49:50 2023
+| Date         : Sat Jul 29 08:55:59 2023
 | Host         : LTK2008N0093475 running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file sap_bus_control_sets_placed.rpt
 | Design       : sap_bus
@@ -23,11 +23,11 @@ Table of Contents
 +----------------------------------------------------------+-------+
 |                          Status                          | Count |
 +----------------------------------------------------------+-------+
-| Total control sets                                       |     7 |
-|    Minimum number of control sets                        |     7 |
+| Total control sets                                       |     4 |
+|    Minimum number of control sets                        |     4 |
 |    Addition due to synthesis replication                 |     0 |
 |    Addition due to physical synthesis replication        |     0 |
-| Unused register locations in slices containing registers |    25 |
+| Unused register locations in slices containing registers |    13 |
 +----------------------------------------------------------+-------+
 * Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
 ** Run report_qor_suggestions for automated merging and remapping suggestions
@@ -39,9 +39,9 @@ Table of Contents
 +--------------------+-------+
 |       Fanout       | Count |
 +--------------------+-------+
-| Total control sets |     7 |
+| Total control sets |     4 |
 | >= 0 to < 4        |     1 |
-| >= 4 to < 6        |     3 |
+| >= 4 to < 6        |     0 |
 | >= 6 to < 8        |     0 |
 | >= 8 to < 10       |     2 |
 | >= 10 to < 12      |     0 |
@@ -58,12 +58,12 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |              27 |            8 |
+| No           | No                    | No                     |              27 |            9 |
 | No           | No                    | Yes                    |               0 |            0 |
-| No           | Yes                   | No                     |               4 |            1 |
-| Yes          | No                    | No                     |              12 |            4 |
+| No           | Yes                   | No                     |               0 |            0 |
+| Yes          | No                    | No                     |              16 |            3 |
 | Yes          | No                    | Yes                    |               0 |            0 |
-| Yes          | Yes                   | No                     |               4 |            1 |
+| Yes          | Yes                   | No                     |               0 |            0 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
 
@@ -73,12 +73,9 @@ Table of Contents
 +----------------+---------------+------------------+------------------+----------------+--------------+
 |  Clock Signal  | Enable Signal | Set/Reset Signal | Slice Load Count | Bel Load Count | Bels / Slice |
 +----------------+---------------+------------------+------------------+----------------+--------------+
-|  count_reg[17] |               |                  |                1 |              2 |         2.00 |
-|  count_reg[24] |               | clr_IBUF         |                1 |              4 |         4.00 |
-|  count_reg[24] | BTND_IBUF     |                  |                2 |              4 |         2.00 |
-|  count_reg[24] | en_IBUF       | clr_IBUF         |                1 |              4 |         4.00 |
-|  count_reg[24] | en_IBUF       |                  |                2 |              8 |         4.00 |
-|  count_reg[24] | RAM/p_0_out   |                  |                2 |              8 |         4.00 |
+|  count_reg[17] |               |                  |                2 |              2 |         1.00 |
+|  count_reg[24] | BTNU_IBUF     |                  |                2 |              8 |         4.00 |
+|  count_reg[24] | BTNL_IBUF     |                  |                1 |              8 |         8.00 |
 |  clk_IBUF_BUFG |               |                  |                7 |             25 |         3.57 |
 +----------------+---------------+------------------+------------------+----------------+--------------+
 

@@ -24,9 +24,11 @@
 
 module sap_bus(
     input clk,
-    input en,
-    input clr,
+    input BTNC,
+    input BTNU,
     input BTND,
+    input BTNL,
+    input BTNR,
     output [3:0] LED,
     input [11:0] SW,
     output [6:0] cat,
@@ -50,38 +52,50 @@ module sap_bus(
     
     
 
+//    //connects program counter to MAR.
+//    wire [3:0] pc_to_mar;
 
-    // Extract the most significant bit of count as slow_clk
-    assign slow_clk = count[24];
-
-    //connects program counter to MAR.
-    wire [3:0] pc_to_mar;
-
-    // Instantiate program_counter module
-    program_counter PC (
-        .clock(slow_clk),
-        .out_to_bus(pc_to_mar),
-        .clr(clr),
-        .en(en)
-    );
+//    // Instantiate program_counter module
+//    program_counter PC (
+//        .clock(slow_clk),
+//        .out_to_bus(pc_to_mar),
+//        .clr(clr),
+//        .en(en)
+//    );
 
     
-    memory_address_register MAR (
+//    memory_address_register MAR (
+//        .clk(slow_clk),
+//        .load(BTND),
+//        .data_in(pc_to_mar),
+//        .data_out(LED)
+//    );
+
+//    wire[7:0] ram_read;
+//    random_access_memory RAM(
+//      .addr(SW[3:0]), // 4-bit address input
+//      .data(SW[11:4]), // 8-bit data input
+//      .clk(slow_clk),
+//      .we(en), // write enable input
+//      .q(ram_read) // 8-bit data output
+//    );
+
+
+    register register_a(
+        .data_in(SW[7:0]),
         .clk(slow_clk),
-        .load(BTND),
-        .data_in(pc_to_mar),
-        .data_out(LED)
+        .load(BTNL),
+        .output_enable(BTNR),
+        .data_out(mybus)
     );
-
-    wire[7:0] ram_read;
-    random_access_memory RAM(
-      .addr(SW[3:0]), // 4-bit address input
-      .data(SW[11:4]), // 8-bit data input
-      .clk(slow_clk),
-      .we(en), // write enable input
-      .q(ram_read) // 8-bit data output
+    
+    register register_b(
+        .data_in(SW[7:0]),
+        .clk(slow_clk),
+        .load(BTNU),
+        .output_enable(BTND),
+        .data_out(mybus)
     );
-
 
 
 
@@ -93,15 +107,16 @@ module sap_bus(
 
 
     // Split the switch inputs into four 4-bit values
-    wire [3:0] seg_data0 = ram_read[3:0];
-    wire [3:0] seg_data1 = ram_read[7:4];
-    wire [3:0] seg_data2 = 4'b0000; // Placeholder - set to whatever you want to display on the third digit
-    wire [3:0] seg_data3 = pc_to_mar; // Placeholder - set to whatever you want to display on the fourth digit
+//    wire [3:0] seg_data0 = ram_read[3:0];
+//    wire [3:0] seg_data1 = ram_read[7:4];
+    wire [7:0] mybus;
+    wire [3:0] seg_data2 = SW[3:0]; // Placeholder - set to whatever you want to display on the third digit
+    wire [3:0] seg_data3 = SW[7:4]; // Placeholder - set to whatever you want to display on the fourth digit
 
     
   display_multiplexer disp_mux (
-        .data0(seg_data0),
-        .data1(seg_data1),
+        .data0(mybus[3:0]),
+        .data1(mybus[7:4]),
         .data2(seg_data2),
         .data3(seg_data3),
         .clk(refresh_clk),

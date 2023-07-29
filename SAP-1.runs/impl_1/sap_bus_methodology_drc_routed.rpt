@@ -1,7 +1,7 @@
 Copyright 1986-2023 Xilinx, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2022.2.2 (win64) Build 3788238 Tue Feb 21 20:00:34 MST 2023
-| Date         : Mon Jul 17 18:50:13 2023
+| Date         : Sat Jul 29 08:56:21 2023
 | Host         : LTK2008N0093475 running 64-bit major release  (build 9200)
 | Command      : report_methodology -file sap_bus_methodology_drc_routed.rpt -pb sap_bus_methodology_drc_routed.pb -rpx sap_bus_methodology_drc_routed.rpx
 | Design       : sap_bus
@@ -23,163 +23,103 @@ Table of Contents
           Floorplan: design_1
       Design limits: <entire design considered>
              Max violations: <unlimited>
-             Violations found: 30
+             Violations found: 18
 +-----------+------------------+-----------------------------+------------+
 | Rule      | Severity         | Description                 | Violations |
 +-----------+------------------+-----------------------------+------------+
-| TIMING-17 | Critical Warning | Non-clocked sequential cell | 30         |
+| TIMING-17 | Critical Warning | Non-clocked sequential cell | 18         |
 +-----------+------------------+-----------------------------+------------+
 
 2. REPORT DETAILS
 -----------------
 TIMING-17#1 Critical Warning
 Non-clocked sequential cell  
-The clock pin MAR/data_out_reg[0]/C is not reached by a timing clock
+The clock pin disp_mux/display_select_reg[0]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#2 Critical Warning
 Non-clocked sequential cell  
-The clock pin MAR/data_out_reg[1]/C is not reached by a timing clock
+The clock pin disp_mux/display_select_reg[1]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#3 Critical Warning
 Non-clocked sequential cell  
-The clock pin MAR/data_out_reg[2]/C is not reached by a timing clock
+The clock pin register_a/data_reg_reg[0]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#4 Critical Warning
 Non-clocked sequential cell  
-The clock pin MAR/data_out_reg[3]/C is not reached by a timing clock
+The clock pin register_a/data_reg_reg[1]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#5 Critical Warning
 Non-clocked sequential cell  
-The clock pin PC/counter_reg[0]/C is not reached by a timing clock
+The clock pin register_a/data_reg_reg[2]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#6 Critical Warning
 Non-clocked sequential cell  
-The clock pin PC/counter_reg[1]/C is not reached by a timing clock
+The clock pin register_a/data_reg_reg[3]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#7 Critical Warning
 Non-clocked sequential cell  
-The clock pin PC/counter_reg[2]/C is not reached by a timing clock
+The clock pin register_a/data_reg_reg[4]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#8 Critical Warning
 Non-clocked sequential cell  
-The clock pin PC/counter_reg[3]/C is not reached by a timing clock
+The clock pin register_a/data_reg_reg[5]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#9 Critical Warning
 Non-clocked sequential cell  
-The clock pin PC/out_to_bus_reg[0]/C is not reached by a timing clock
+The clock pin register_a/data_reg_reg[6]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#10 Critical Warning
 Non-clocked sequential cell  
-The clock pin PC/out_to_bus_reg[1]/C is not reached by a timing clock
+The clock pin register_a/data_reg_reg[7]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#11 Critical Warning
 Non-clocked sequential cell  
-The clock pin PC/out_to_bus_reg[2]/C is not reached by a timing clock
+The clock pin register_b/data_reg_reg[0]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#12 Critical Warning
 Non-clocked sequential cell  
-The clock pin PC/out_to_bus_reg[3]/C is not reached by a timing clock
+The clock pin register_b/data_reg_reg[1]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#13 Critical Warning
 Non-clocked sequential cell  
-The clock pin RAM/memory_reg_0_15_0_0/SP/CLK is not reached by a timing clock
+The clock pin register_b/data_reg_reg[2]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#14 Critical Warning
 Non-clocked sequential cell  
-The clock pin RAM/memory_reg_0_15_1_1/SP/CLK is not reached by a timing clock
+The clock pin register_b/data_reg_reg[3]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#15 Critical Warning
 Non-clocked sequential cell  
-The clock pin RAM/memory_reg_0_15_2_2/SP/CLK is not reached by a timing clock
+The clock pin register_b/data_reg_reg[4]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#16 Critical Warning
 Non-clocked sequential cell  
-The clock pin RAM/memory_reg_0_15_3_3/SP/CLK is not reached by a timing clock
+The clock pin register_b/data_reg_reg[5]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#17 Critical Warning
 Non-clocked sequential cell  
-The clock pin RAM/memory_reg_0_15_4_4/SP/CLK is not reached by a timing clock
+The clock pin register_b/data_reg_reg[6]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#18 Critical Warning
 Non-clocked sequential cell  
-The clock pin RAM/memory_reg_0_15_5_5/SP/CLK is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#19 Critical Warning
-Non-clocked sequential cell  
-The clock pin RAM/memory_reg_0_15_6_6/SP/CLK is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#20 Critical Warning
-Non-clocked sequential cell  
-The clock pin RAM/memory_reg_0_15_7_7/SP/CLK is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#21 Critical Warning
-Non-clocked sequential cell  
-The clock pin RAM/q_reg[0]/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#22 Critical Warning
-Non-clocked sequential cell  
-The clock pin RAM/q_reg[1]/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#23 Critical Warning
-Non-clocked sequential cell  
-The clock pin RAM/q_reg[2]/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#24 Critical Warning
-Non-clocked sequential cell  
-The clock pin RAM/q_reg[3]/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#25 Critical Warning
-Non-clocked sequential cell  
-The clock pin RAM/q_reg[4]/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#26 Critical Warning
-Non-clocked sequential cell  
-The clock pin RAM/q_reg[5]/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#27 Critical Warning
-Non-clocked sequential cell  
-The clock pin RAM/q_reg[6]/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#28 Critical Warning
-Non-clocked sequential cell  
-The clock pin RAM/q_reg[7]/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#29 Critical Warning
-Non-clocked sequential cell  
-The clock pin disp_mux/display_select_reg[0]/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#30 Critical Warning
-Non-clocked sequential cell  
-The clock pin disp_mux/display_select_reg[1]/C is not reached by a timing clock
+The clock pin register_b/data_reg_reg[7]/C is not reached by a timing clock
 Related violations: <none>
 
 
