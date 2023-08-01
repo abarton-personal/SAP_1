@@ -1,7 +1,7 @@
 Copyright 1986-2023 Xilinx, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2022.2.2 (win64) Build 3788238 Tue Feb 21 20:00:34 MST 2023
-| Date         : Sat Jul 29 08:55:59 2023
+| Date         : Mon Jul 31 17:43:54 2023
 | Host         : LTK2008N0093475 running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file sap_bus_control_sets_placed.rpt
 | Design       : sap_bus
@@ -61,9 +61,9 @@ Table of Contents
 | No           | No                    | No                     |              27 |            9 |
 | No           | No                    | Yes                    |               0 |            0 |
 | No           | Yes                   | No                     |               0 |            0 |
-| Yes          | No                    | No                     |              16 |            3 |
+| Yes          | No                    | No                     |               0 |            0 |
 | Yes          | No                    | Yes                    |               0 |            0 |
-| Yes          | Yes                   | No                     |               0 |            0 |
+| Yes          | Yes                   | No                     |              16 |            5 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
 
@@ -74,8 +74,8 @@ Table of Contents
 |  Clock Signal  | Enable Signal | Set/Reset Signal | Slice Load Count | Bel Load Count | Bels / Slice |
 +----------------+---------------+------------------+------------------+----------------+--------------+
 |  count_reg[17] |               |                  |                2 |              2 |         1.00 |
-|  count_reg[24] | BTNU_IBUF     |                  |                2 |              8 |         4.00 |
-|  count_reg[24] | BTNL_IBUF     |                  |                1 |              8 |         8.00 |
+|  count_reg[24] | BTNU_IBUF     | SW_IBUF[9]       |                2 |              8 |         4.00 |
+|  count_reg[24] | BTNL_IBUF     | SW_IBUF[10]      |                3 |              8 |         2.67 |
 |  clk_IBUF_BUFG |               |                  |                7 |             25 |         3.57 |
 +----------------+---------------+------------------+------------------+----------------+--------------+
 

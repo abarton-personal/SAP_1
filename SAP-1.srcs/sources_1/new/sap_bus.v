@@ -80,23 +80,36 @@ module sap_bus(
 //      .q(ram_read) // 8-bit data output
 //    );
 
-
+    wire[7:0] reg_a;
+    wire[7:0] reg_b;
+    
     register register_a(
         .data_in(SW[7:0]),
         .clk(slow_clk),
+        .clr(SW[10]),
         .load(BTNL),
         .output_enable(BTNR),
-        .data_out(mybus)
+        .data_out(reg_a),
+        .data_out_gated(mybus)
     );
     
     register register_b(
         .data_in(SW[7:0]),
         .clk(slow_clk),
+        .clr(SW[9]),
         .load(BTNU),
         .output_enable(BTND),
-        .data_out(mybus)
+        .data_out(reg_b),
+        .data_out_gated(mybus)
     );
 
+    adder_subtractor add_sub(
+        .inputA(reg_a),        // Input A
+        .inputB(reg_b),        // Input B
+        .Su(SW[11]),             // Subtract control
+        .Eu(BTNC),             // Enable output control
+        .result_out(mybus)    // Output
+    );
 
 
     wire[7:0] AN;

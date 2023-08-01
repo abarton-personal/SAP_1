@@ -24,8 +24,11 @@
         input wire [7:0] data_in,
         input wire clk,
         input wire load,
-        input wire output_enable,
-        output wire [7:0] data_out
+        input wire clr,
+        output wire [7:0] data_out,
+        input wire output_enable,           
+        output wire [7:0] data_out_gated    //outputs only if output_enable is true
+        
     );
 
     // Internal register to hold the data.
@@ -33,12 +36,16 @@
 
     // When the load signal is high, store the input data on the next clock cycle.
     always @(posedge clk) begin
-        if (load)
+        if (clr)
+            data_reg <= 8'b00000000;      
+        else if (load)
             data_reg <= data_in;
+  
     end
 
     // Create a tri-state buffer for the output.
     // When the enable signal is high, the output is the value stored in the register.
     // Otherwise, the output is high impedance (Z).
-    assign data_out = output_enable ? data_reg : 8'bz;
+    assign data_out_gated = output_enable ? data_reg : 8'bz;
+    assign data_out = data_reg;
 endmodule

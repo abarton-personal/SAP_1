@@ -89,6 +89,7 @@ set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 read_verilog -library xil_defaultlib {
+  C:/Users/abarton/Documents/Vivado/SAP-1/SAP-1.srcs/sources_1/new/adder_subtractor.v
   C:/Users/abarton/Documents/Vivado/SAP-1/SAP-1.srcs/sources_1/new/display_multiplexer.v
   C:/Users/abarton/Documents/Vivado/SAP-1/SAP-1.srcs/sources_1/new/register.v
   C:/Users/abarton/Documents/Vivado/SAP-1/SAP-1.srcs/sources_1/new/seven_segment.v
