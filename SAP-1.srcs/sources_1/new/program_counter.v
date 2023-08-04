@@ -24,7 +24,8 @@ module program_counter(
     input clock,
     output reg [3:0] out_to_bus,
     input clr,
-    input en
+    input output_enable,
+    input increment
     );
     
     reg [3:0] counter;
@@ -32,14 +33,16 @@ module program_counter(
     always @(posedge clock) begin
         if (clr)
             counter <= 4'b0000;
-        else if (en)
+        else if (increment)
             counter <= counter + 1;
-            
-        if (clr)
-            out_to_bus <= 4'b0000;
-        else
+        
+        if(output_enable)
             out_to_bus <= counter;
+        else    
+            out_to_bus <= 4'bz; 
+             
     end
+         
     
 endmodule
 

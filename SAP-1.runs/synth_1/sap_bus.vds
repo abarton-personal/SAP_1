@@ -2,8 +2,8 @@
 # Vivado v2022.2.2 (64-bit)
 # SW Build 3788238 on Tue Feb 21 20:00:34 MST 2023
 # IP Build 3783773 on Tue Feb 21 23:41:56 MST 2023
-# Start of session at: Mon Jul 31 17:42:15 2023
-# Process ID: 1428
+# Start of session at: Thu Aug  3 18:23:20 2023
+# Process ID: 16148
 # Current directory: C:/Users/abarton/Documents/Vivado/SAP-1/SAP-1.runs/synth_1
 # Command line: vivado.exe -log sap_bus.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source sap_bus.tcl
 # Log file: C:/Users/abarton/Documents/Vivado/SAP-1/SAP-1.runs/synth_1/sap_bus.vds
@@ -11,7 +11,7 @@
 # Running On: LTK2008N0093475, OS: Windows, CPU Frequency: 2592 MHz, CPU Physical cores: 6, Host memory: 34137 MB
 #-----------------------------------------------------------
 source sap_bus.tcl -notrace
-create_project: Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 540.336 ; gain = 101.855
+create_project: Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 540.668 ; gain = 102.496
 Command: read_checkpoint -auto_incremental -incremental C:/Users/abarton/Documents/Vivado/SAP-1/SAP-1.srcs/utils_1/imports/synth_1/sap_bus.dcp
 INFO: [Vivado 12-5825] Read reference checkpoint from C:/Users/abarton/Documents/Vivado/SAP-1/SAP-1.srcs/utils_1/imports/synth_1/sap_bus.dcp for incremental synthesis
 INFO: [Vivado 12-7989] Please ensure there are no constraint changes
@@ -24,14 +24,19 @@ INFO: [Designutils 20-5440] No compile time benefit to using incremental synthes
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 32732
+INFO: [Synth 8-7075] Helper process launched with PID 1732
 INFO: [Synth 8-11241] undeclared symbol 'REGCCE', assumed default net type 'wire' [C:/Xilinx/Vivado/2022.2/data/verilog/src/unimacro/BRAM_SINGLE_MACRO.v:2170]
-INFO: [Synth 8-11241] undeclared symbol 'mybus', assumed default net type 'wire' [C:/Users/abarton/Documents/Vivado/SAP-1/SAP-1.srcs/sources_1/new/sap_bus.v:93]
-WARNING: [Synth 8-8895] 'mybus' is already implicitly declared on line 93 [C:/Users/abarton/Documents/Vivado/SAP-1/SAP-1.srcs/sources_1/new/sap_bus.v:125]
+WARNING: [Synth 8-9694] invalid size of integer constant literal [C:/Users/abarton/Documents/Vivado/SAP-1/SAP-1.srcs/sources_1/new/memory_address_register.v:35]
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 1354.172 ; gain = 408.809
+Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 1353.500 ; gain = 407.715
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'sap_bus' [C:/Users/abarton/Documents/Vivado/SAP-1/SAP-1.srcs/sources_1/new/sap_bus.v:25]
+INFO: [Synth 8-6157] synthesizing module 'program_counter' [C:/Users/abarton/Documents/Vivado/SAP-1/SAP-1.srcs/sources_1/new/program_counter.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'program_counter' (0#1) [C:/Users/abarton/Documents/Vivado/SAP-1/SAP-1.srcs/sources_1/new/program_counter.v:23]
+INFO: [Synth 8-6157] synthesizing module 'memory_address_register' [C:/Users/abarton/Documents/Vivado/SAP-1/SAP-1.srcs/sources_1/new/memory_address_register.v:25]
+INFO: [Synth 8-6155] done synthesizing module 'memory_address_register' (0#1) [C:/Users/abarton/Documents/Vivado/SAP-1/SAP-1.srcs/sources_1/new/memory_address_register.v:25]
+INFO: [Synth 8-6157] synthesizing module 'random_access_memory' [C:/Users/abarton/Documents/Vivado/SAP-1/SAP-1.srcs/sources_1/new/random_access_memory.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'random_access_memory' (0#1) [C:/Users/abarton/Documents/Vivado/SAP-1/SAP-1.srcs/sources_1/new/random_access_memory.v:23]
 INFO: [Synth 8-6157] synthesizing module 'register' [C:/Users/abarton/Documents/Vivado/SAP-1/SAP-1.srcs/sources_1/new/register.v:23]
 INFO: [Synth 8-6155] done synthesizing module 'register' (0#1) [C:/Users/abarton/Documents/Vivado/SAP-1/SAP-1.srcs/sources_1/new/register.v:23]
 INFO: [Synth 8-6157] synthesizing module 'adder_subtractor' [C:/Users/abarton/Documents/Vivado/SAP-1/SAP-1.srcs/sources_1/new/adder_subtractor.v:2]
@@ -43,8 +48,19 @@ INFO: [Synth 8-226] default block is never used [C:/Users/abarton/Documents/Viva
 INFO: [Synth 8-6155] done synthesizing module 'seven_segment' (0#1) [C:/Users/abarton/Documents/Vivado/SAP-1/SAP-1.srcs/sources_1/new/seven_segment.v:24]
 INFO: [Synth 8-6155] done synthesizing module 'display_multiplexer' (0#1) [C:/Users/abarton/Documents/Vivado/SAP-1/SAP-1.srcs/sources_1/new/display_multiplexer.v:23]
 INFO: [Synth 8-6155] done synthesizing module 'sap_bus' (0#1) [C:/Users/abarton/Documents/Vivado/SAP-1/SAP-1.srcs/sources_1/new/sap_bus.v:25]
-WARNING: [Synth 8-3848] Net LED in module/entity sap_bus does not have driver. [C:/Users/abarton/Documents/Vivado/SAP-1/SAP-1.srcs/sources_1/new/sap_bus.v:32]
 WARNING: [Synth 8-3848] Net DP in module/entity sap_bus does not have driver. [C:/Users/abarton/Documents/Vivado/SAP-1/SAP-1.srcs/sources_1/new/sap_bus.v:36]
+WARNING: [Synth 8-3848] Net sub in module/entity sap_bus does not have driver. [C:/Users/abarton/Documents/Vivado/SAP-1/SAP-1.srcs/sources_1/new/sap_bus.v:85]
+WARNING: [Synth 8-3848] Net adder_oe in module/entity sap_bus does not have driver. [C:/Users/abarton/Documents/Vivado/SAP-1/SAP-1.srcs/sources_1/new/sap_bus.v:86]
+WARNING: [Synth 8-3848] Net reg_b_load in module/entity sap_bus does not have driver. [C:/Users/abarton/Documents/Vivado/SAP-1/SAP-1.srcs/sources_1/new/sap_bus.v:82]
+WARNING: [Synth 8-3848] Net reset in module/entity sap_bus does not have driver. [C:/Users/abarton/Documents/Vivado/SAP-1/SAP-1.srcs/sources_1/new/sap_bus.v:80]
+WARNING: [Synth 8-3848] Net reg_b_oe in module/entity sap_bus does not have driver. [C:/Users/abarton/Documents/Vivado/SAP-1/SAP-1.srcs/sources_1/new/sap_bus.v:84]
+WARNING: [Synth 8-3848] Net reg_a_load in module/entity sap_bus does not have driver. [C:/Users/abarton/Documents/Vivado/SAP-1/SAP-1.srcs/sources_1/new/sap_bus.v:81]
+WARNING: [Synth 8-3848] Net reg_a_oe in module/entity sap_bus does not have driver. [C:/Users/abarton/Documents/Vivado/SAP-1/SAP-1.srcs/sources_1/new/sap_bus.v:83]
+WARNING: [Synth 8-3848] Net ram_we in module/entity sap_bus does not have driver. [C:/Users/abarton/Documents/Vivado/SAP-1/SAP-1.srcs/sources_1/new/sap_bus.v:79]
+WARNING: [Synth 8-3848] Net ram_oe in module/entity sap_bus does not have driver. [C:/Users/abarton/Documents/Vivado/SAP-1/SAP-1.srcs/sources_1/new/sap_bus.v:78]
+WARNING: [Synth 8-3848] Net pc_oe in module/entity sap_bus does not have driver. [C:/Users/abarton/Documents/Vivado/SAP-1/SAP-1.srcs/sources_1/new/sap_bus.v:75]
+WARNING: [Synth 8-3848] Net pc_inc in module/entity sap_bus does not have driver. [C:/Users/abarton/Documents/Vivado/SAP-1/SAP-1.srcs/sources_1/new/sap_bus.v:76]
+WARNING: [Synth 8-3848] Net mar_load in module/entity sap_bus does not have driver. [C:/Users/abarton/Documents/Vivado/SAP-1/SAP-1.srcs/sources_1/new/sap_bus.v:77]
 WARNING: [Synth 8-3917] design sap_bus has port AN_out[7] driven by constant 1
 WARNING: [Synth 8-3917] design sap_bus has port AN_out[6] driven by constant 1
 WARNING: [Synth 8-3917] design sap_bus has port AN_out[5] driven by constant 1
@@ -52,22 +68,29 @@ WARNING: [Synth 8-3917] design sap_bus has port AN_out[4] driven by constant 1
 WARNING: [Synth 8-7129] Port LED[3] in module sap_bus is either unconnected or has no load
 WARNING: [Synth 8-7129] Port LED[2] in module sap_bus is either unconnected or has no load
 WARNING: [Synth 8-7129] Port LED[1] in module sap_bus is either unconnected or has no load
-WARNING: [Synth 8-7129] Port LED[0] in module sap_bus is either unconnected or has no load
 WARNING: [Synth 8-7129] Port DP in module sap_bus is either unconnected or has no load
+WARNING: [Synth 8-7129] Port BTNC in module sap_bus is either unconnected or has no load
+WARNING: [Synth 8-7129] Port BTNU in module sap_bus is either unconnected or has no load
+WARNING: [Synth 8-7129] Port BTND in module sap_bus is either unconnected or has no load
+WARNING: [Synth 8-7129] Port BTNL in module sap_bus is either unconnected or has no load
+WARNING: [Synth 8-7129] Port BTNR in module sap_bus is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SW[11] in module sap_bus is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SW[10] in module sap_bus is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SW[9] in module sap_bus is either unconnected or has no load
 WARNING: [Synth 8-7129] Port SW[8] in module sap_bus is either unconnected or has no load
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1444.559 ; gain = 499.195
+Finished RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1443.664 ; gain = 497.879
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1444.559 ; gain = 499.195
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1443.664 ; gain = 497.879
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1444.559 ; gain = 499.195
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1443.664 ; gain = 497.879
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1444.559 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1443.664 ; gain = 0.000
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
@@ -78,32 +101,32 @@ INFO: [Project 1-236] Implementation specific constraints were found while readi
 Resolution: To avoid this warning, move constraints listed in [.Xil/sap_bus_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1524.746 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1541.711 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 1524.746 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 1541.711 ; gain = 0.000
 INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 INFO: [Synth 8-11241] undeclared symbol 'REGCCE', assumed default net type 'wire' [C:/Xilinx/Vivado/2022.2/data/verilog/src/unimacro/BRAM_SINGLE_MACRO.v:2170]
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:14 ; elapsed = 00:00:15 . Memory (MB): peak = 1524.746 ; gain = 579.383
+Finished Constraint Validation : Time (s): cpu = 00:00:14 ; elapsed = 00:00:15 . Memory (MB): peak = 1541.711 ; gain = 595.926
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a50ticsg324-1L
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:14 ; elapsed = 00:00:15 . Memory (MB): peak = 1524.746 ; gain = 579.383
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:14 ; elapsed = 00:00:15 . Memory (MB): peak = 1541.711 ; gain = 595.926
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:14 ; elapsed = 00:00:15 . Memory (MB): peak = 1524.746 ; gain = 579.383
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:14 ; elapsed = 00:00:15 . Memory (MB): peak = 1541.711 ; gain = 595.926
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:14 ; elapsed = 00:00:15 . Memory (MB): peak = 1524.746 ; gain = 579.383
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:14 ; elapsed = 00:00:15 . Memory (MB): peak = 1541.711 ; gain = 595.926
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -111,10 +134,14 @@ Start RTL Component Statistics
 Detailed RTL Component Info : 
 +---Adders : 
 	   3 Input    8 Bit       Adders := 1     
+	   2 Input    4 Bit       Adders := 1     
 	   2 Input    2 Bit       Adders := 1     
 +---Registers : 
-	                8 Bit    Registers := 2     
+	                8 Bit    Registers := 3     
+	                4 Bit    Registers := 2     
 	                2 Bit    Registers := 1     
++---RAMs : 
+	              128 Bit	(16 X 8 bit)          RAMs := 1     
 +---Muxes : 
 	   2 Input    8 Bit        Muxes := 2     
 	   4 Input    7 Bit        Muxes := 1     
@@ -141,29 +168,36 @@ WARNING: [Synth 8-3917] design sap_bus has port AN_out[4] driven by constant 1
 WARNING: [Synth 8-7129] Port LED[3] in module sap_bus is either unconnected or has no load
 WARNING: [Synth 8-7129] Port LED[2] in module sap_bus is either unconnected or has no load
 WARNING: [Synth 8-7129] Port LED[1] in module sap_bus is either unconnected or has no load
-WARNING: [Synth 8-7129] Port LED[0] in module sap_bus is either unconnected or has no load
 WARNING: [Synth 8-7129] Port DP in module sap_bus is either unconnected or has no load
+WARNING: [Synth 8-7129] Port BTNC in module sap_bus is either unconnected or has no load
+WARNING: [Synth 8-7129] Port BTNU in module sap_bus is either unconnected or has no load
+WARNING: [Synth 8-7129] Port BTND in module sap_bus is either unconnected or has no load
+WARNING: [Synth 8-7129] Port BTNL in module sap_bus is either unconnected or has no load
+WARNING: [Synth 8-7129] Port BTNR in module sap_bus is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SW[11] in module sap_bus is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SW[10] in module sap_bus is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SW[9] in module sap_bus is either unconnected or has no load
 WARNING: [Synth 8-7129] Port SW[8] in module sap_bus is either unconnected or has no load
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:16 ; elapsed = 00:00:18 . Memory (MB): peak = 1524.746 ; gain = 579.383
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:16 ; elapsed = 00:00:18 . Memory (MB): peak = 1541.711 ; gain = 595.926
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:22 ; elapsed = 00:00:23 . Memory (MB): peak = 1524.746 ; gain = 579.383
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:21 ; elapsed = 00:00:23 . Memory (MB): peak = 1541.711 ; gain = 595.926
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:22 ; elapsed = 00:00:23 . Memory (MB): peak = 1524.746 ; gain = 579.383
+Finished Timing Optimization : Time (s): cpu = 00:00:21 ; elapsed = 00:00:23 . Memory (MB): peak = 1541.711 ; gain = 595.926
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:22 ; elapsed = 00:00:23 . Memory (MB): peak = 1524.746 ; gain = 579.383
+Finished Technology Mapping : Time (s): cpu = 00:00:22 ; elapsed = 00:00:23 . Memory (MB): peak = 1541.711 ; gain = 595.926
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -180,38 +214,62 @@ Start Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
+WARNING: [Synth 8-3295] tying undriven pin i_9:en to constant 0
+WARNING: [Synth 8-3295] tying undriven pin i_10:en to constant 0
+WARNING: [Synth 8-3295] tying undriven pin i_11:en to constant 0
+WARNING: [Synth 8-3295] tying undriven pin i_12:en to constant 0
+WARNING: [Synth 8-3295] tying undriven pin i_13:en to constant 0
+WARNING: [Synth 8-3295] tying undriven pin i_14:en to constant 0
+WARNING: [Synth 8-3295] tying undriven pin i_15:en to constant 0
+WARNING: [Synth 8-3295] tying undriven pin i_16:en to constant 0
+WARNING: [Synth 8-3295] tying undriven pin i_17:en to constant 0
+WARNING: [Synth 8-3295] tying undriven pin i_18:en to constant 0
+WARNING: [Synth 8-3295] tying undriven pin i_19:en to constant 0
+WARNING: [Synth 8-3295] tying undriven pin i_20:en to constant 0
+WARNING: [Synth 8-3295] tying undriven pin i_21:en to constant 0
+WARNING: [Synth 8-3295] tying undriven pin i_22:en to constant 0
+WARNING: [Synth 8-3295] tying undriven pin i_23:en to constant 0
+WARNING: [Synth 8-3295] tying undriven pin i_24:en to constant 0
+WARNING: [Synth 8-3295] tying undriven pin i_25:en to constant 0
+WARNING: [Synth 8-3295] tying undriven pin i_26:en to constant 0
+WARNING: [Synth 8-3295] tying undriven pin i_27:en to constant 0
+WARNING: [Synth 8-3295] tying undriven pin i_28:en to constant 0
+WARNING: [Synth 8-3295] tying undriven pin i_29:en to constant 0
+WARNING: [Synth 8-3295] tying undriven pin i_30:en to constant 0
+WARNING: [Synth 8-3295] tying undriven pin i_31:en to constant 0
+WARNING: [Synth 8-3295] tying undriven pin i_32:en to constant 0
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:26 ; elapsed = 00:00:27 . Memory (MB): peak = 1524.746 ; gain = 579.383
+Finished IO Insertion : Time (s): cpu = 00:00:26 ; elapsed = 00:00:27 . Memory (MB): peak = 1541.711 ; gain = 595.926
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:26 ; elapsed = 00:00:27 . Memory (MB): peak = 1524.746 ; gain = 579.383
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:26 ; elapsed = 00:00:27 . Memory (MB): peak = 1541.711 ; gain = 595.926
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:26 ; elapsed = 00:00:27 . Memory (MB): peak = 1524.746 ; gain = 579.383
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:26 ; elapsed = 00:00:27 . Memory (MB): peak = 1541.711 ; gain = 595.926
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:26 ; elapsed = 00:00:27 . Memory (MB): peak = 1524.746 ; gain = 579.383
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:26 ; elapsed = 00:00:27 . Memory (MB): peak = 1541.711 ; gain = 595.926
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:26 ; elapsed = 00:00:27 . Memory (MB): peak = 1524.746 ; gain = 579.383
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:26 ; elapsed = 00:00:27 . Memory (MB): peak = 1541.711 ; gain = 595.926
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:26 ; elapsed = 00:00:27 . Memory (MB): peak = 1524.746 ; gain = 579.383
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:26 ; elapsed = 00:00:27 . Memory (MB): peak = 1541.711 ; gain = 595.926
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -228,41 +286,39 @@ Report Cell Usage:
 |      |Cell   |Count |
 +------+-------+------+
 |1     |BUFG   |     1|
-|2     |CARRY4 |     9|
+|2     |CARRY4 |     7|
 |3     |LUT1   |     2|
-|4     |LUT2   |     6|
-|5     |LUT3   |     6|
-|6     |LUT4   |    42|
-|7     |LUT5   |     1|
-|8     |LUT6   |     8|
-|9     |MUXF7  |    14|
-|10    |MUXF8  |     7|
-|11    |FDRE   |    43|
-|12    |IBUF   |    17|
-|13    |OBUF   |    15|
-|14    |OBUFT  |     5|
+|4     |LUT2   |     5|
+|5     |LUT4   |    21|
+|6     |LUT6   |    15|
+|7     |MUXF7  |    14|
+|8     |MUXF8  |     7|
+|9     |FDRE   |    29|
+|10    |IBUF   |     9|
+|11    |OBUF   |    16|
+|12    |OBUFT  |     4|
 +------+-------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:26 ; elapsed = 00:00:27 . Memory (MB): peak = 1524.746 ; gain = 579.383
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:26 ; elapsed = 00:00:27 . Memory (MB): peak = 1541.711 ; gain = 595.926
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 0 critical warnings and 11 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:17 ; elapsed = 00:00:26 . Memory (MB): peak = 1524.746 ; gain = 499.195
-Synthesis Optimization Complete : Time (s): cpu = 00:00:26 ; elapsed = 00:00:27 . Memory (MB): peak = 1524.746 ; gain = 579.383
+Synthesis finished with 0 errors, 0 critical warnings and 42 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:18 ; elapsed = 00:00:26 . Memory (MB): peak = 1541.711 ; gain = 497.879
+Synthesis Optimization Complete : Time (s): cpu = 00:00:26 ; elapsed = 00:00:27 . Memory (MB): peak = 1541.711 ; gain = 595.926
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1524.746 ; gain = 0.000
-INFO: [Netlist 29-17] Analyzing 30 Unisim elements for replacement
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1541.711 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 28 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1524.746 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1541.711 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Synth Design complete, checksum: 12a4f27f
+Synth Design complete, checksum: 8fddea1f
 INFO: [Common 17-83] Releasing license: Synthesis
-35 Infos, 25 Warnings, 0 Critical Warnings and 0 Errors encountered.
+40 Infos, 74 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:30 ; elapsed = 00:00:37 . Memory (MB): peak = 1524.746 ; gain = 957.246
+synth_design: Time (s): cpu = 00:00:30 ; elapsed = 00:00:39 . Memory (MB): peak = 1541.711 ; gain = 973.836
 INFO: [Common 17-1381] The checkpoint 'C:/Users/abarton/Documents/Vivado/SAP-1/SAP-1.runs/synth_1/sap_bus.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file sap_bus_utilization_synth.rpt -pb sap_bus_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Mon Jul 31 17:43:05 2023...
+INFO: [Common 17-206] Exiting Vivado at Thu Aug  3 18:24:12 2023...

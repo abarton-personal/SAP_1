@@ -22,19 +22,21 @@
 
 module random_access_memory(
   input [3:0] addr, // 4-bit address input
-  input [7:0] data, // 8-bit data input
+  input [7:0] data_in, // 8-bit data input
   input clk,
-  input we, // write enable input
+  input write_enable, // write enable input
+  input output_enable,
   output reg [7:0] q // 8-bit data output
 );
 
   reg [7:0] memory [15:0]; // memory array, 16 8-bit locations
 
   always @(posedge clk) begin
-    if(we) begin
-      memory[addr] <= data; // write operation
+    if(write_enable) begin
+      memory[addr] <= data_in; // write operation
     end else begin
-      q <= memory[addr]; // read operation
+      // output what's in memory if output_enable, else high z
+      q <= output_enable ? memory[addr] : 8'bz; 
     end
   end
 

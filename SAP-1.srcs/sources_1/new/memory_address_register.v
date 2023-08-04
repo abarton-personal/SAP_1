@@ -25,12 +25,15 @@
 module memory_address_register(
     input wire clk,
     input wire load,
+    input clr,
     input wire [3:0] data_in,
     output reg [3:0] data_out
 );
 
 always @(posedge clk) begin
-    if (load) begin
+    if (clr)
+        data_out <= 0'b0000;
+    else if (load) begin
         data_out <= data_in;
     end
 end
