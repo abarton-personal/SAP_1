@@ -22,27 +22,26 @@
 
 module instruction_register(
     input wire clk,
-    input wire reset,
+    input wire clr,
     input wire [7:0] data_in, // instruction from RAM
     input wire load,          // signal to load instruction from RAM
-    output wire [7:0] data_out, // instruction to the control unit
-    output wire [3:0] opcode, // the upper nibble (opcode)
-    output wire [3:0] operand // the lower nibble (operand)
+    input wire output_enable,
+    output wire [3:0] opcode, // the upper nibble (opcode) - to control sequencer
+    output wire [3:0] operand // the lower nibble (operand) - to bus
 );
 
     // 8-bit register to store the instruction
     reg [7:0] instr_reg;
 
-    // Process the instruction on positive edge of clock or reset
-    always @(posedge clk or posedge reset) begin
-        if (reset)
+    // Process the instruction on positive edge of clock or clr
+    always @(posedge clk or posedge clr) begin
+        if (clr)
             instr_reg <= 8'b00000000; // Reset instruction register
         else if (load)
             instr_reg <= data_in; // Load new instruction from RAM
     end
 
     // Assign the output
-    assign data_out = instr_reg;
-    assign opcode = instr_reg[7:4]; // upper nibble
-    assign operand = instr_reg[3:0]; // lower nibble
+    assign opcode = instr_reg[7:4];
+    assign operand = output_enable ? instr_reg[3:0] : 4'bz;
 endmodule

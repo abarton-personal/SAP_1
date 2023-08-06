@@ -29,8 +29,8 @@ module sap_bus(
     input BTND, //down
     input BTNL, //left
     input BTNR, //right
-    output [3:0] LED,   //green LEDs above switches
-    input [11:0] SW,    //switches
+    output [15:0] LED,   //green LEDs above switches
+    input [15:0] SW,    //switches
     output [6:0] cat,   //7 seg cathodes, one for each segment (shared by all digits)
     output [7:0] AN_out,    //7 seg anodes, one for each digit
     output DP           //decimal point cathode
@@ -40,18 +40,24 @@ module sap_bus(
 
     reg [24:0] count = 0;
     // Create a slower clock by dividing the original clock
-    wire slow_clk;      
-    assign slow_clk = count[24];  
+    wire slow_clk;    
+    reg btn_clk;  
+    assign slow_clk = count[24];      
     // Create a seven segment refresh clock, ~60Hz
     wire refresh_clk;        
     assign refresh_clk = count[17];
     
     always @ (posedge(clk)) begin
-        count <= count + 1;
+        count <= count + 1;        
+    end
+    
+    always @ (posedge(slow_clk)) begin
+        btn_clk <= BTNC;
     end
     
     // visualize the clock
     assign LED[0] = slow_clk;
+    assign LED[1] = btn_clk;
     
     
     //wires used for 7 segment displays
@@ -61,46 +67,45 @@ module sap_bus(
     assign AN[7:4] = 4'b1111;
     assign AN_out = AN;
     
-    // Split the switch inputs into four 4-bit values
-//    wire [3:0] seg_data0 = ram_read[3:0];
-//    wire [3:0] seg_data1 = ram_read[7:4];
-    wire [3:0] seg_data2 = SW[3:0]; // Placeholder - set to whatever you want to display on the third digit
-    wire [3:0] seg_data3 = SW[7:4]; // Placeholder - set to whatever you want to display on the fourth digit
+
     
     // THE BUS
     wire [7:0] mybus;
-
+    
+    
     
     // control signals
-    wire pc_oe;
-    wire pc_inc;
-    wire mar_load;
-    wire ram_oe;
-    wire ram_we;
-    wire reset;
-    wire reg_a_load;
-    wire reg_b_load;
-    wire reg_a_oe;
-    wire reg_b_oe;
-    wire sub;
-    wire adder_oe;
+    wire pc_oe = SW[0];
+    wire pc_inc = SW[1];
+    wire mar_load = SW[2];
+    wire ram_oe = SW[3];
+    wire ram_we = SW[4];   
+    wire reg_a_load = SW[5];
+    wire reg_b_load = SW[6];
+    wire reg_a_oe = SW[7];
+    wire reg_b_oe = SW[8];
+    wire sub = SW[9];
+    wire adder_oe = SW[10];
+    wire out_reg_load = SW[11];
+  
+    wire reset = SW[12];
     
     
 
     // Instantiate program_counter module
     program_counter PC (
-        .clock(slow_clk),
+        .clock(btn_clk),
         .out_to_bus(mybus[3:0]),
         .clr(reset),
         .output_enable(pc_oe),
         .increment(pc_inc)
     );
 
-    // from MAR to RAM
+    // memory address - from MAR to RAM
     wire [3:0] next_address;
     
     memory_address_register MAR (
-        .clk(slow_clk),
+        .clk(btn_clk),
         .load(mar_load),
         .clr(reset),
         .data_in(mybus[3:0]),
@@ -110,7 +115,7 @@ module sap_bus(
     random_access_memory RAM(
       .addr(next_address), // 4-bit address input
       .data_in(mybus), // 8-bit data input
-      .clk(slow_clk),
+      .clk(btn_clk),
       .write_enable(ram_we), // write enable input
       .output_enable(ram_oe),
       .q(mybus) // 8-bit data output
@@ -122,7 +127,7 @@ module sap_bus(
     
     register register_a(
         .data_in(mybus),
-        .clk(slow_clk),
+        .clk(btn_clk),
         .clr(reset),
         .load(reg_a_load),
         .output_enable(reg_a_oe),
@@ -132,7 +137,7 @@ module sap_bus(
     
     register register_b(
         .data_in(mybus),
-        .clk(slow_clk),
+        .clk(btn_clk),
         .clr(reset),
         .load(reg_b_load),
         .output_enable(reg_b_oe),
@@ -144,20 +149,29 @@ module sap_bus(
         .inputA(reg_a),        // Input A
         .inputB(reg_b),        // Input B
         .Su(sub),             // Subtract control
-        .Eu(adder_oe),             // Enable output control
+        .Eu(adder_oe),        // Enable output control
         .result_out(mybus)    // Output
     );
 
 
 
-
+    wire [7:0] out_to_seg;
+    register output_register(
+        .data_in(mybus),
+        .clk(btn_clk),
+        .clr(1'b0),
+        .load(out_reg_load),
+        .output_enable(1'b0),
+        .data_out(out_to_seg),
+        .data_out_gated(mybus)
+    );
 
     
   display_multiplexer disp_mux (
         .data0(mybus[3:0]),
         .data1(mybus[7:4]),
-        .data2(seg_data2),
-        .data3(seg_data3),
+        .data2(out_to_seg[3:0]),
+        .data3(out_to_seg[7:4]),
         .clk(refresh_clk),
         .seg(cat),
         .AN(AN[3:0]) // Connect the first 3 bits of AN to the anodes of the displays

@@ -27,7 +27,7 @@
         input wire clr,
         output wire [7:0] data_out,
         input wire output_enable,           
-        output wire [7:0] data_out_gated    //outputs only if output_enable is true
+        output reg [7:0] data_out_gated    //outputs only if output_enable is true
         
     );
 
@@ -38,14 +38,17 @@
     always @(posedge clk) begin
         if (clr)
             data_reg <= 8'b00000000;      
-        else if (load)
+        else if (load) begin
             data_reg <= data_in;
+        end
+        
+        // Create a tri-state buffer for the output.
+        // When the enable signal is high, the output is the value stored in the register.
+        // Otherwise, the output is high impedance (Z).        
+        data_out_gated <= output_enable ? data_reg : 8'bz;      
   
     end
-
-    // Create a tri-state buffer for the output.
-    // When the enable signal is high, the output is the value stored in the register.
-    // Otherwise, the output is high impedance (Z).
-    assign data_out_gated = output_enable ? data_reg : 8'bz;
+    
+    // this output to the adder is always enabled.    
     assign data_out = data_reg;
 endmodule
