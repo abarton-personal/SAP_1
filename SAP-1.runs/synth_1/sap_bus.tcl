@@ -71,7 +71,6 @@ proc create_report { reportName command } {
 }
 OPTRACE "synth_1" START { ROLLUP_AUTO }
 set_param chipscope.maxJobs 3
-set_param xicom.use_bs_reader 1
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7a50ticsg324-1L
 
@@ -91,6 +90,7 @@ OPTRACE "Adding files" START { }
 read_verilog -library xil_defaultlib {
   C:/Users/abarton/Documents/Vivado/SAP-1/SAP-1.srcs/sources_1/new/adder_subtractor.v
   C:/Users/abarton/Documents/Vivado/SAP-1/SAP-1.srcs/sources_1/new/display_multiplexer.v
+  C:/Users/abarton/Documents/Vivado/SAP-1/SAP-1.srcs/sources_1/new/instruction_register.v
   C:/Users/abarton/Documents/Vivado/SAP-1/SAP-1.srcs/sources_1/new/memory_address_register.v
   C:/Users/abarton/Documents/Vivado/SAP-1/SAP-1.srcs/sources_1/new/program_counter.v
   C:/Users/abarton/Documents/Vivado/SAP-1/SAP-1.srcs/sources_1/new/random_access_memory.v

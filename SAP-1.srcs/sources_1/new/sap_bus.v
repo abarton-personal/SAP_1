@@ -75,20 +75,22 @@ module sap_bus(
     
     
     // control signals
-    wire pc_oe = SW[0];
-    wire pc_inc = SW[1];
-    wire mar_load = SW[2];
-    wire ram_oe = SW[3];
-    wire ram_we = SW[4];   
-    wire reg_a_load = SW[5];
-    wire reg_b_load = SW[6];
-    wire reg_a_oe = SW[7];
-    wire reg_b_oe = SW[8];
-    wire sub = SW[9];
-    wire adder_oe = SW[10];
-    wire out_reg_load = SW[11];
+    wire pc_oe      = SW[0];
+    wire pc_inc     = SW[1];
+    wire mar_load   = SW[2];
+    wire ram_oe     = SW[3];
+    wire ram_we     = SW[4];   
+    wire inst_load  = SW[5];
+    wire inst_oe    = SW[6];
+    wire reg_a_load = SW[7];
+    wire reg_b_load = SW[8];
+    wire reg_a_oe   = SW[9];
+    wire reg_b_oe   = SW[10];
+    wire sub        = SW[11];
+    wire adder_oe   = SW[12];
+    wire out_reg_load = SW[13];
   
-    wire reset = SW[12];
+    wire reset      = SW[14];
     
     
 
@@ -119,6 +121,18 @@ module sap_bus(
       .write_enable(ram_we), // write enable input
       .output_enable(ram_oe),
       .q(mybus) // 8-bit data output
+    );
+
+
+    wire [3:0] opcode; //passes directly to control sequencer
+    instruction_register IR(
+        .clk(btn_clk),
+        .clr(reset),
+        .data_in(mybus), // instruction from RAM
+        .load(inst_load),          // signal to load instruction from RAM
+        .output_enable(inst_oe),
+        .opcode(opcode), // the upper nibble (opcode) - to control sequencer
+        .operand(mybus[3:0]) // the lower nibble (operand) - to bus
     );
 
     // feeds directly from registers to adder

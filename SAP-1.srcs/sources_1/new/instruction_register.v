@@ -27,7 +27,7 @@ module instruction_register(
     input wire load,          // signal to load instruction from RAM
     input wire output_enable,
     output wire [3:0] opcode, // the upper nibble (opcode) - to control sequencer
-    output wire [3:0] operand // the lower nibble (operand) - to bus
+    output reg [3:0] operand // the lower nibble (operand) - to bus
 );
 
     // 8-bit register to store the instruction
@@ -39,9 +39,17 @@ module instruction_register(
             instr_reg <= 8'b00000000; // Reset instruction register
         else if (load)
             instr_reg <= data_in; // Load new instruction from RAM
+        
     end
-
-    // Assign the output
+    
+    always @(posedge clk) begin
+        if(output_enable)
+            operand <= instr_reg[3:0];            
+        else 
+            operand <= 4'bz;
+    end
+    
+    // opcode is always active
     assign opcode = instr_reg[7:4];
-    assign operand = output_enable ? instr_reg[3:0] : 4'bz;
+
 endmodule
