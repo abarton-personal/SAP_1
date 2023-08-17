@@ -6,6 +6,7 @@ module control_sequencer (
     output reg mar_load,
     output reg ram_oe,
     output reg ir_load,
+    output reg ir_oe,
     output reg reg_a_load,
     output reg reg_b_load,
     output reg reg_a_oe,
@@ -16,13 +17,28 @@ module control_sequencer (
 );
 
     reg [3:0] t_state;  // Timing state
+    reg halt;
+    reg instruction_complete;
+    
+    initial begin
+        halt = 0;
+        instruction_complete = 0;
+    end
 
     // Increment the timing state on each clock cycle
     always @(negedge clk or posedge reset)
-    if (reset)
-        t_state <= 0;
-    else
-        t_state <= t_state + 1;
+    if (reset) begin
+        halt <= 0;       // Clear halt signal on reset
+        t_state <= 0;        
+        instruction_complete = 0;
+    end
+    else if (!halt) begin //Only increment the t_state if not halted
+        if (instruction_complete) begin
+            t_state <= 0;        
+            instruction_complete = 0;
+        end else 
+            t_state <= t_state + 1;
+    end
 
     // Generate control signals based on the timing state
     always @(t_state, opcode)
@@ -33,6 +49,7 @@ module control_sequencer (
         mar_load = 0;
         ram_oe = 0;
         ir_load = 0;
+        ir_oe = 0;
         reg_a_load = 0;
         reg_b_load = 0;
         reg_a_oe = 0;
@@ -40,7 +57,9 @@ module control_sequencer (
         sub = 0;
         adder_oe = 0;
         out_reg_load = 0;
+        instruction_complete = 0;
 
+        // FETCH CYCLE
         // Timing state T1: Increment PC, load MAR
         if (t_state == 1)
         begin
@@ -56,40 +75,68 @@ module control_sequencer (
             pc_inc = 1;
         end
 
-        // Timing state T3 and beyond: execute instruction
+        // Timing state T3 and beyond: EXECUTE INSTRUCTION
         else if (t_state > 2)
         begin
             // Decode and execute opcode
             case (opcode)
                 4'b0000: // LDA
-                    if (t_state == 3) reg_a_load = 1;
-                4'b0001: // ADD
-                    if (t_state == 3) reg_b_load = 1;
-                    else if (t_state == 4)
+                    if (t_state == 3) 
                     begin
-                        reg_a_oe = 1;
-                        reg_b_oe = 1;
-                        adder_oe = 1;
+                        ir_oe = 1;
                         reg_a_load = 1;
                     end
-                4'b0010: // SUB
-                    if (t_state == 3) reg_b_load = 1;
                     else if (t_state == 4)
                     begin
-                        reg_a_oe = 1;
-                        reg_b_oe = 1;
-                        sub = 1;
-                        adder_oe = 1;
+                        ram_oe = 1;
                         reg_a_load = 1;
+                        instruction_complete = 1;
+                    end
+                4'b0001: // ADD
+                    if (t_state == 3) 
+                    begin 
+                        ir_oe = 1;
+                        mar_load = 1;                
+                    end
+                    else if (t_state == 4)
+                    begin
+                       ram_oe = 1;
+                       reg_b_load = 1;
+                    end
+                    else if (t_state == 5)
+                    begin
+                       adder_oe = 1;
+                       reg_a_load = 1;
+                       instruction_complete = 1;
+                    end
+                4'b0010: // SUBTRACT
+                    if (t_state == 3) 
+                    begin 
+                        ir_oe = 1;
+                        mar_load = 1;                
+                    end
+                    else if (t_state == 4)
+                    begin
+                       ram_oe = 1;
+                       reg_b_load = 1;
+                       sub = 1;
+                    end
+                    else if (t_state == 5)
+                    begin
+                       adder_oe = 1;
+                       reg_a_load = 1;
+                       sub = 1;
+                       instruction_complete = 1;
                     end
                 4'b1110: // OUT
                     if (t_state == 3)
                     begin
                         reg_a_oe = 1;
                         out_reg_load = 1;
+                        instruction_complete = 1;
                     end
                 4'b1111: // HLT
-                    if (t_state == 3) reset = 1;
+                    if (t_state == 3) halt = 1;
             endcase
         end
     end

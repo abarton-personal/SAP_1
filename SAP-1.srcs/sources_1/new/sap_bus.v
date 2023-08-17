@@ -134,6 +134,28 @@ module sap_bus(
         .opcode(opcode), // the upper nibble (opcode) - to control sequencer
         .operand(mybus[3:0]) // the lower nibble (operand) - to bus
     );
+    
+    
+    control_sequencer CS (
+        .clk(btn_clk), 
+        .reset(reset),
+        .opcode(opcode),
+        .pc_oe(pc_oe),
+        .pc_inc(pc_inc),
+        .mar_load(mar_load),
+        .ram_oe(ram_oe),
+        .ir_load(inst_load),
+        .ir_oe(inst_oe),
+        .reg_a_load(reg_a_load),
+        .reg_b_load(reg_b_load),
+        .reg_a_oe(reg_a_oe),
+        .reg_b_oe(reg_b_oe),
+        .sub(sub),
+        .adder_oe(adder_oe),
+        .out_reg_load(out_reg_load)
+    );
+
+
 
     // feeds directly from registers to adder
     wire[7:0] reg_a;
@@ -162,8 +184,8 @@ module sap_bus(
     adder_subtractor add_sub(
         .inputA(reg_a),        // Input A
         .inputB(reg_b),        // Input B
-        .Su(sub),             // Subtract control
-        .Eu(adder_oe),        // Enable output control
+        .Sub(sub),             // Subtract control
+        .output_enable(adder_oe),        // Enable output control
         .result_out(mybus)    // Output
     );
 
