@@ -13,7 +13,8 @@ module control_sequencer (
     output reg reg_b_oe,
     output reg sub,
     output reg adder_oe,
-    output reg out_reg_load
+    output reg out_reg_load,
+    output [3:0] t_state_out
 );
 
     reg [3:0] t_state;  // Timing state
@@ -25,17 +26,19 @@ module control_sequencer (
         instruction_complete = 0;
     end
 
+    assign t_state_out = t_state;
+    
     // Increment the timing state on each clock cycle
     always @(negedge clk or posedge reset)
     if (reset) begin
         halt <= 0;       // Clear halt signal on reset
         t_state <= 0;        
-        instruction_complete = 0;
+        instruction_complete <= 0;
     end
     else if (!halt) begin //Only increment the t_state if not halted
         if (instruction_complete) begin
             t_state <= 0;        
-            instruction_complete = 0;
+            instruction_complete <= 0;
         end else 
             t_state <= t_state + 1;
     end
@@ -57,7 +60,6 @@ module control_sequencer (
         sub = 0;
         adder_oe = 0;
         out_reg_load = 0;
-        instruction_complete = 0;
 
         // FETCH CYCLE
         // Timing state T1: Increment PC, load MAR
@@ -84,13 +86,13 @@ module control_sequencer (
                     if (t_state == 3) 
                     begin
                         ir_oe = 1;
-                        reg_a_load = 1;
+                        mar_load = 1;
                     end
                     else if (t_state == 4)
                     begin
                         ram_oe = 1;
                         reg_a_load = 1;
-                        instruction_complete = 1;
+                        instruction_complete <= 1;
                     end
                 4'b0001: // ADD
                     if (t_state == 3) 
@@ -107,7 +109,7 @@ module control_sequencer (
                     begin
                        adder_oe = 1;
                        reg_a_load = 1;
-                       instruction_complete = 1;
+                       instruction_complete <= 1;
                     end
                 4'b0010: // SUBTRACT
                     if (t_state == 3) 
@@ -126,17 +128,17 @@ module control_sequencer (
                        adder_oe = 1;
                        reg_a_load = 1;
                        sub = 1;
-                       instruction_complete = 1;
+                       instruction_complete <= 1;
                     end
                 4'b1110: // OUT
                     if (t_state == 3)
                     begin
                         reg_a_oe = 1;
                         out_reg_load = 1;
-                        instruction_complete = 1;
+                        instruction_complete <= 1;
                     end
                 4'b1111: // HLT
-                    if (t_state == 3) halt = 1;
+                    if (t_state == 3) halt <= 1;
             endcase
         end
     end

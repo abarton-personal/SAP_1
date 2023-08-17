@@ -30,6 +30,7 @@ module sap_bus(
     input BTNL, //left
     input BTNR, //right
     output [15:0] LED,   //green LEDs above switches
+    output LED16_B, LED16_G, LED16_R, LED17_B, LED17_G, LED17_R,
     input [15:0] SW,    //switches
     output [6:0] cat,   //7 seg cathodes, one for each segment (shared by all digits)
     output [7:0] AN_out,    //7 seg anodes, one for each digit
@@ -56,15 +57,15 @@ module sap_bus(
     end
     
     // visualize the clock
-    assign LED[0] = slow_clk;
-    assign LED[1] = btn_clk;
+//    assign LED17_R = slow_clk;
+    assign LED16_B = btn_clk;
     
     
     //wires used for 7 segment displays
     
     wire[7:0] AN;
     // AN[7:4] are unused, hard code to '1'
-    assign AN[7:4] = 4'b1111;
+    assign AN[6:4] = 3'b111;
     assign AN_out = AN;
     
 
@@ -75,24 +76,41 @@ module sap_bus(
     
     
     // control signals
-    wire pc_oe      = SW[0];
-    wire pc_inc     = SW[1];
-    wire mar_load   = SW[2];
-    wire ram_oe     = SW[3];
-    wire ram_we     = SW[4];   
-    wire inst_load  = SW[5];
-    wire inst_oe    = SW[6];
-    wire reg_a_load = SW[7];
-    wire reg_b_load = SW[8];
-    wire reg_a_oe   = SW[9];
-    wire reg_b_oe   = SW[10];
-    wire sub        = SW[11];
-    wire adder_oe   = SW[12];
-    wire out_reg_load = SW[13];
-  
+    wire pc_oe;      
+    wire pc_inc;     
+    wire mar_load;   
+    wire ram_oe;     
+    wire ram_we;     
+    wire inst_load;  
+    wire inst_oe;    
+    wire reg_a_load; 
+    wire reg_b_load; 
+    wire reg_a_oe;   
+    wire reg_b_oe;   
+    wire sub;        
+    wire adder_oe;   
+    wire out_reg_load; 
+    
     wire reset      = SW[14];
-    
-    
+  
+    // visualize the control signals
+    assign LED[0] = pc_oe;
+    assign LED[1] = pc_inc;
+    assign LED[2] = mar_load;
+    assign LED[3] = ram_oe;
+    assign LED[4] = ram_we;
+    assign LED[5] = inst_load;
+    assign LED[6] = inst_oe;
+    assign LED[7] = reg_a_load;
+    assign LED[8] = reg_b_load;
+    assign LED[9] = reg_a_oe;
+    assign LED[10] = reg_b_oe;
+    assign LED[11] = sub;
+    assign LED[12] = adder_oe;
+    assign LED[13] = out_reg_load;  
+    assign LED[14] = reset;  
+  
+            
 
     // Instantiate program_counter module
     program_counter PC (
@@ -135,7 +153,7 @@ module sap_bus(
         .operand(mybus[3:0]) // the lower nibble (operand) - to bus
     );
     
-    
+    wire [3:0] t_state;
     control_sequencer CS (
         .clk(btn_clk), 
         .reset(reset),
@@ -152,7 +170,8 @@ module sap_bus(
         .reg_b_oe(reg_b_oe),
         .sub(sub),
         .adder_oe(adder_oe),
-        .out_reg_load(out_reg_load)
+        .out_reg_load(out_reg_load),
+        .t_state_out(t_state)
     );
 
 
@@ -208,9 +227,11 @@ module sap_bus(
         .data1(mybus[7:4]),
         .data2(out_to_seg[3:0]),
         .data3(out_to_seg[7:4]),
+        .data7(t_state),
         .clk(refresh_clk),
         .seg(cat),
-        .AN(AN[3:0]) // Connect the first 3 bits of AN to the anodes of the displays
+        .AN(AN[3:0]), // Connect the first 3 bits of AN to the anodes of the displays
+        .AN7(AN[7])
     );
 
  
