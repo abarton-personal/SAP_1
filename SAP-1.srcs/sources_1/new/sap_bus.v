@@ -46,7 +46,7 @@ module sap_bus(
     assign slow_clk = count[24];      
     // Create a seven segment refresh clock, ~60Hz
     wire refresh_clk;        
-    assign refresh_clk = count[17];
+    assign refresh_clk = count[16];
     
     always @ (posedge(clk)) begin
         count <= count + 1;        
@@ -61,19 +61,14 @@ module sap_bus(
     assign LED16_B = btn_clk;
     
     
-    //wires used for 7 segment displays
-    
+    //wires used for 7 segment displays    
     wire[7:0] AN;
-    // AN[7:4] are unused, hard code to '1'
-    assign AN[6:4] = 3'b111;
-    assign AN_out = AN;
-    
+    assign AN_out = AN;  
 
     
     // THE BUS
     wire [7:0] mybus;
-    
-    
+        
     
     // control signals
     wire pc_oe;      
@@ -227,11 +222,13 @@ module sap_bus(
         .data1(mybus[7:4]),
         .data2(out_to_seg[3:0]),
         .data3(out_to_seg[7:4]),
-        .data7(t_state),
+        .data4(4'b0000),
+        .data5(4'b0000),
+        .data6(t_state),
+        .data7(4'b0000),
         .clk(refresh_clk),
         .seg(cat),
-        .AN(AN[3:0]), // Connect the first 3 bits of AN to the anodes of the displays
-        .AN7(AN[7])
+        .AN(AN[7:0]) // Connect the first 3 bits of AN to the anodes of the displays        
     );
 
  
