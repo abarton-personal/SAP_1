@@ -105,12 +105,14 @@ module sap_bus(
     assign LED[13] = out_reg_load;  
     assign LED[14] = reset;  
   
-            
+            // :)
 
     // Instantiate program_counter module
+    wire[3:0] program_count_disp;
     program_counter PC (
         .clock(btn_clk),
         .out_to_bus(mybus[3:0]),
+        .out_to_disp(program_count_disp),
         .clr(reset),
         .output_enable(pc_oe),
         .increment(pc_inc)
@@ -222,10 +224,10 @@ module sap_bus(
         .data1(mybus[7:4]),
         .data2(out_to_seg[3:0]),
         .data3(out_to_seg[7:4]),
-        .data4(4'b0000),
+        .data4(opcode),
         .data5(4'b0000),
         .data6(t_state),
-        .data7(4'b0000),
+        .data7(program_count_disp),
         .clk(refresh_clk),
         .seg(cat),
         .AN(AN[7:0]) // Connect the first 3 bits of AN to the anodes of the displays        

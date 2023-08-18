@@ -22,6 +22,7 @@
 module program_counter(
     input clock,
     output reg [3:0] out_to_bus,
+    output [3:0] out_to_disp,
     input clr,
     input output_enable,
     input increment
@@ -46,6 +47,9 @@ module program_counter(
             out_to_bus <= 4'bz;
         end       
     end        
+    
+    assign out_to_disp = counter;
+    
 endmodule
 
 

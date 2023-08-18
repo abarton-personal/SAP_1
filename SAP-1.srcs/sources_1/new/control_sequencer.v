@@ -35,16 +35,17 @@ module control_sequencer (
         t_state <= 0;        
         instruction_complete <= 0;
     end
-    else if (!halt) begin //Only increment the t_state if not halted
-        if (instruction_complete) begin
-            t_state <= 0;        
-            instruction_complete <= 0;
-        end else 
-            t_state <= t_state + 1;
+    else if (!halt && !instruction_complete) begin //Only increment the t_state if not halted and instruction not complete
+        t_state <= t_state + 1;
+    end
+    else if (instruction_complete) begin
+        t_state <= 0;        
+        instruction_complete <= 0;
     end
 
+
     // Generate control signals based on the timing state
-    always @(t_state, opcode)
+    always @(t_state)
     begin
         // Default: turn off all control signals
         pc_inc = 0;

@@ -1,7 +1,7 @@
 Copyright 1986-2023 Xilinx, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2022.2.2 (win64) Build 3788238 Tue Feb 21 20:00:34 MST 2023
-| Date         : Thu Aug 17 16:32:04 2023
+| Date         : Thu Aug 17 17:11:03 2023
 | Host         : LTK2008N0093475 running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file sap_bus_control_sets_placed.rpt
 | Design       : sap_bus
@@ -23,11 +23,11 @@ Table of Contents
 +----------------------------------------------------------+-------+
 |                          Status                          | Count |
 +----------------------------------------------------------+-------+
-| Total control sets                                       |    10 |
-|    Minimum number of control sets                        |    10 |
+| Total control sets                                       |    11 |
+|    Minimum number of control sets                        |    11 |
 |    Addition due to synthesis replication                 |     0 |
 |    Addition due to physical synthesis replication        |     0 |
-| Unused register locations in slices containing registers |    34 |
+| Unused register locations in slices containing registers |    42 |
 +----------------------------------------------------------+-------+
 * Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
 ** Run report_qor_suggestions for automated merging and remapping suggestions
@@ -39,8 +39,8 @@ Table of Contents
 +--------------------+-------+
 |       Fanout       | Count |
 +--------------------+-------+
-| Total control sets |    10 |
-| >= 0 to < 4        |     2 |
+| Total control sets |    11 |
+| >= 0 to < 4        |     3 |
 | >= 4 to < 6        |     2 |
 | >= 6 to < 8        |     0 |
 | >= 8 to < 10       |     3 |
@@ -58,12 +58,12 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |              74 |           21 |
-| No           | No                    | Yes                    |               4 |            2 |
+| No           | No                    | No                     |              73 |           24 |
+| No           | No                    | Yes                    |               5 |            4 |
 | No           | Yes                   | No                     |               0 |            0 |
-| Yes          | No                    | No                     |               8 |            3 |
+| Yes          | No                    | No                     |               8 |            4 |
 | Yes          | No                    | Yes                    |               8 |            5 |
-| Yes          | Yes                   | No                     |              24 |           10 |
+| Yes          | Yes                   | No                     |              24 |            7 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
 
@@ -73,16 +73,17 @@ Table of Contents
 +---------------------+----------------+------------------+------------------+----------------+--------------+
 |     Clock Signal    |  Enable Signal | Set/Reset Signal | Slice Load Count | Bel Load Count | Bels / Slice |
 +---------------------+----------------+------------------+------------------+----------------+--------------+
+|  LED16_B_OBUF_BUFG  |                | LED_OBUF[14]     |                1 |              1 |         1.00 |
 |  slow_clk           |                |                  |                1 |              1 |         1.00 |
 |  count_reg_n_0_[16] |                |                  |                1 |              3 |         3.00 |
 |  LED16_B_OBUF_BUFG  | CS/LED_OBUF[2] | LED_OBUF[14]     |                1 |              4 |         4.00 |
-| ~LED16_B_OBUF_BUFG  |                | LED_OBUF[14]     |                2 |              4 |         2.00 |
-|  LED16_B_OBUF_BUFG  | IR/LED_OBUF[2] | LED_OBUF[14]     |                3 |              8 |         2.67 |
-|  LED16_B_OBUF_BUFG  | IR/LED_OBUF[3] |                  |                3 |              8 |         2.67 |
-|  LED16_B_OBUF_BUFG  | IR/LED_OBUF[1] | LED_OBUF[14]     |                5 |              8 |         1.60 |
-|  LED16_B_OBUF_BUFG  | CS/LED_OBUF[1] | LED_OBUF[14]     |                6 |             12 |         2.00 |
+| ~LED16_B_OBUF_BUFG  |                | LED_OBUF[14]     |                3 |              4 |         1.33 |
+|  LED16_B_OBUF_BUFG  | CS/LED_OBUF[6] | LED_OBUF[14]     |                2 |              8 |         4.00 |
+|  LED16_B_OBUF_BUFG  | CS/LED_OBUF[7] |                  |                4 |              8 |         2.00 |
+|  LED16_B_OBUF_BUFG  | CS/LED_OBUF[5] | LED_OBUF[14]     |                2 |              8 |         4.00 |
+|  LED16_B_OBUF_BUFG  | CS/LED_OBUF[1] | LED_OBUF[14]     |                7 |             12 |         1.71 |
 |  clk_IBUF_BUFG      |                |                  |                7 |             25 |         3.57 |
-|  LED16_B_OBUF_BUFG  |                |                  |               12 |             53 |         4.42 |
+|  LED16_B_OBUF_BUFG  |                |                  |               15 |             52 |         3.47 |
 +---------------------+----------------+------------------+------------------+----------------+--------------+
 
 

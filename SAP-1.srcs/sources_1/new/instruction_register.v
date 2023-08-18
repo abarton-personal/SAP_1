@@ -35,18 +35,17 @@ module instruction_register(
 
     // Process the instruction on positive edge of clock or clr
     always @(posedge clk or posedge clr) begin
-        if (clr)
+        if (clr) begin
             instr_reg <= 8'b00000000; // Reset instruction register
-        else if (load)
-            instr_reg <= data_in; // Load new instruction from RAM
-        
-    end
-    
-    always @(posedge clk) begin
-        if(output_enable)
-            operand <= instr_reg[3:0];            
-        else 
-            operand <= 4'bz;
+            operand <= 4'bz; // Reset operand
+        end else begin
+            if (load)
+                instr_reg <= data_in; // Load new instruction from RAM
+            if (output_enable)
+                operand <= instr_reg[3:0];            
+            else 
+                operand <= 4'bz;
+        end
     end
     
     // opcode is always active
